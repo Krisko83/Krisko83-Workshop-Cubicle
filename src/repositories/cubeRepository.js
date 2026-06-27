@@ -43,9 +43,14 @@ async function getAll(filter = {}) {
     return cubeData;    
 };
 
+async function getById(cubeId) {
+    const database = await getAll();
+    return database.find(cube => cube.id === cubeId);
+}
 const cubeRepository = {
     getAll,
-    createCube
+    createCube,
+    getById
 }
 
 export default cubeRepository;

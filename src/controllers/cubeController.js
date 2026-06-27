@@ -13,6 +13,14 @@ cubeController.post('/create',async (req, res) => {
     await cubeService.createCube(cubeData)
     
     res.redirect('/')
-})
+});
+
+cubeController.get('/details/:cubeId',async (req, res) => {
+    const cubeId = req.params.cubeId;
+
+    const cube = await cubeService.getCubeById(cubeId);
+ 
+    res.render('cubes/details', { cube })
+});
 
 export default cubeController;

@@ -9,10 +9,15 @@ function createCube(cubeData) {
     return cubeRepository.createCube(cubeData);
 };
 
+function getCubeById(cubeId){
+    return cubeRepository.getById(cubeId);
+}
+
 
 
 const cubeService = {
     getAllCubes,
-    createCube
+    createCube,
+    getCubeById
 }
 export default cubeService;
