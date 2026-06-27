@@ -1,0 +1,27 @@
+{
+  "name": "krisko83-workshop-cubicle",
+  "version": "1.0.0",
+  "description": "Side mini project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krisko83/Krisko83-Workshop-Cubicle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Krisko83/Krisko83-Workshop-Cubicle/issues"
+  },
+  "homepage": "https://github.com/Krisko83/Krisko83-Workshop-Cubicle#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-handlebars": "^9.0.1",
+    "uuid": "^14.0.1"
+  }
+}

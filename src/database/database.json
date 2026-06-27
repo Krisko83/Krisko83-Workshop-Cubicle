@@ -1,0 +1,74 @@
+{
+    "cubes": [
+        {
+            "id": "d6d0a8e4-7d1f-42e4-8d9c-9a2d9a91c101",
+            "name": "Classic 3x3 Cube",
+            "description": "The standard 3x3 Rubik's Cube, perfect for beginners and speedcubers alike.",
+            "imageUrl": "https://images.unsplash.com/photo-1591994843349-f415893b3a6b",
+            "difficultyLevel": 2
+        },
+        {
+            "id": "a47b2b82-f14d-4fd0-a3f5-9a0fbbfd7102",
+            "name": "Mirror Cube",
+            "description": "A shape-modifying puzzle where pieces differ in size instead of color.",
+            "imageUrl": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80",
+            "difficultyLevel": 4
+        },
+        {
+            "id": "b5bde7b8-9d83-4b43-94b4-53b8eb81d203",
+            "name": "Pyraminx",
+            "description": "A tetrahedron-shaped twisty puzzle that's easy to learn and fun to solve.",
+            "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61izOzq%2BBAL._SY355_.jpg",
+            "difficultyLevel": 1
+        },
+        {
+            "id": "cf70b698-fef4-4d55-89fc-cf93d88ec304",
+            "name": "Megaminx",
+            "description": "A twelve-sided puzzle offering a greater challenge than the classic cube.",
+            "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61HpQqVQ37L._SY355_.jpg",
+            "difficultyLevel": 5
+        },
+        {
+            "id": "e9a7ef0b-cbe4-4f0c-b6de-9e4b2e4d8405",
+            "name": "4x4 Revenge Cube",
+            "description": "An advanced cube with no fixed centers, introducing parity cases.",
+            "imageUrl": "https://images.unsplash.com/photo-1587614382346-4ec70e388b28",
+            "difficultyLevel": 4
+        },
+        {
+            "id": "1ab8b1a7-11d4-45dd-b8b2-c2d0b07be706",
+            "name": "5x5 Professor Cube",
+            "description": "A larger cube puzzle requiring advanced reduction techniques.",
+            "imageUrl": "https://images.unsplash.com/photo-1603575448364-d8b59f92b5bb",
+            "difficultyLevel": 5
+        },
+        {
+            "id": "3d53f604-6406-46e8-a6d7-2a6b79dbb807",
+            "name": "Skewb",
+            "description": "A corner-turning cube puzzle with smooth rotations and unique solving methods.",
+            "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904",
+            "difficultyLevel": 3
+        },
+        {
+            "id": "6fd6b5fa-f0e5-4f4f-8d75-5b3ef1fd0d08",
+            "name": "Ghost Cube",
+            "description": "A highly challenging shape-mod puzzle that appears scrambled even when solved.",
+            "imageUrl": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+            "difficultyLevel": 6
+        },
+        {
+            "id": "8be5f48c-7eaf-487d-8d0d-57d9d1bb7c09",
+            "name": "2x2 Pocket Cube",
+            "description": "A compact version of the Rubik's Cube that's ideal for quick solves.",
+            "imageUrl": "https://images.unsplash.com/photo-1526403225-4d1f3b4e04b6",
+            "difficultyLevel": 1
+        },
+        {
+            "id": "f2e5d0b6-4db8-42c5-aac7-88a84aef9d10",
+            "name": "Axis Cube",
+            "description": "A shape-shifting cube that changes form with every turn while maintaining color patterns.",
+            "imageUrl": "https://images.unsplash.com/photo-1518131678677-a36c7fcbf6d9",
+            "difficultyLevel": 5
+        }
+    ]
+}
