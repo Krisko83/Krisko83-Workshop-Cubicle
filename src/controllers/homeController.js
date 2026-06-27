@@ -7,9 +7,8 @@ homeController.get('/',async (req, res) => {
     const filter = req.query;
  
     const cubesData = await cubeService.getAllCubes(filter);
-     
-    
-    res.render('index', { cubesData })
+      
+    res.render('index', { cubesData, filter })
 })
 
 homeController.get('/about', (req, res) => {

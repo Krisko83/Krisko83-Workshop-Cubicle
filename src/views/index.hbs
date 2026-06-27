@@ -1,9 +1,9 @@
 <h1>Browser</h1>
 <form method="get">
-  <input type="text" class="search" name="search" placeholder="Search...">
-  <input type="number" name="from" class="difficulty" placeholder="Difficulty from...">
+  <input type="text" class="search" name="search" value="{{filter.search}}" placeholder="Search...">
+  <input type="number" name="from" class="difficulty" value="{{filter.from}}" placeholder="Difficulty from...">
   <span>-</span>
-  <input type="number" name="to" class="difficulty" placeholder="Difficulty to...">
+  <input type="number" name="to" class="difficulty" value="{{filter.to}}" placeholder="Difficulty to...">
   <input type="submit" value="search">
 </form>
 {{#each cubesData}}
