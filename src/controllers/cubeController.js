@@ -6,7 +6,7 @@ import accessoriesService from "../services/accessoriesService.js";
 const cubeController = Router();
 
 cubeController.get('/create/cube', (req, res) => {
-    res.render('cubes/create');
+    res.render('cubes/create', {pageTitle: 'Create Cube'});
 })
 
 cubeController.post('/create/cube', async (req, res) => {
@@ -22,11 +22,11 @@ cubeController.get('/details/:cubeId', async (req, res) => {
 
     const cube = await cubeService.getCubeById(cubeId);
  
-    res.render('cubes/details', { cube })
+    res.render('cubes/details', { cube, pageTitle: 'Details' })
 });
 
 cubeController.get('/create/accessory', (req, res) => {
-    res.render('accessories/create');
+    res.render('accessories/create', {pageTitle: 'Create Accessory'});
 })
 
 cubeController.post('/create/accessory', async (req, res) => {
@@ -43,7 +43,7 @@ cubeController.get('/details/:cubeId/attach', async (req, res) => {
  
     const accessories = await accessoriesService.getAll({ exclude: cube.accessories.map(accessory => accessory.id)});    
 
-    res.render('cubes/attach', { cube, accessories });
+    res.render('cubes/attach', { cube, accessories, pageTitle: 'Attach Accessory'  });
 });
 
 cubeController.post('/details/:cubeId', async (req, res) => {
