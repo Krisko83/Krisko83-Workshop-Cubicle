@@ -4,8 +4,8 @@ function create(accessoryData) {
     return accessoriesRepository.create(accessoryData)
 }
 
-function getAll() {
-    return accessoriesRepository.getAll();
+function getAll(filter = {}) {
+    return accessoriesRepository.getAll(filter);
 };
 
 function getById(accessoryId) {

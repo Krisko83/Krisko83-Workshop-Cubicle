@@ -8,8 +8,12 @@ async function create(accessoryData) {
     return accessory
 }
 
-async function getAll(){
-    const accessories = await prisma.accessory.findMany();
+async function getAll(filter = {}){
+    const accessories = await prisma.accessory.findMany({
+        where: {
+            id: { notIn: filter.exclude || [] }
+        }
+    });
 
     return accessories
 }
@@ -21,6 +25,7 @@ async function getById(accessoryId) {
 
     return accessory
 }
+
 
 const accessoriesRepository = {
     create,

@@ -39,9 +39,9 @@ cubeController.post('/create/accessory', async (req, res) => {
 
 cubeController.get('/details/:cubeId/attach', async (req, res) => {
     const cubeId = req.params.cubeId;
-
-    const accessories = await accessoriesService.getAll();
     const cube = await cubeService.getCubeById(cubeId);
+ 
+    const accessories = await accessoriesService.getAll({ exclude: cube.accessories.map(accessory => accessory.id)});    
 
     res.render('cubes/attach', { cube, accessories });
 });
