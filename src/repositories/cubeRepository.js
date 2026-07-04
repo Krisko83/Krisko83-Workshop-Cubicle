@@ -1,5 +1,6 @@
 import { v4 as uuid} from 'uuid';
 import fs from 'fs/promises';
+import { prisma } from '../../prisma/lib/prisma.js';
 
 async function readDb(collection) {
     const cubeDataBuff = await fs.readFile('./src/database/database.json', { encoding: 'utf-8'});
@@ -20,13 +21,11 @@ async function writeToDb(cubeData) {
 };
 
 async function createCube(cubeData) {
-    const database = await readDb();
-    cubeData.id = uuid();
-    cubeData.difficultyLevel = Number(cubeData.difficultyLevel);
- 
-    database.cubes.push(cubeData);
+    const cube = await prisma.cube.create({
+        data: cubeData
+    })
 
-   await writeToDb(database);
+    return cube;
 };
 
 async function getAll(filter = {}) {

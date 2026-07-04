@@ -6,6 +6,8 @@ function getAllCubes(filter={}) {
  
 
 function createCube(cubeData) {
+    cubeData.difficultyLevel = Number(cubeData.difficultyLevel);
+    
     return cubeRepository.createCube(cubeData);
 };
 
