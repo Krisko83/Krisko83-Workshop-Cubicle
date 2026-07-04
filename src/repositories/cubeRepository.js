@@ -31,7 +31,8 @@ async function getById(cubeId) {
     const cube = await prisma.cube.findUnique({
         where: {
             id: cubeId
-        }
+        },
+        include: { accessories: true}
     });
 
     return cube;

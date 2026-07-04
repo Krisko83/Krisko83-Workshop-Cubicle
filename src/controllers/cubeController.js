@@ -21,7 +21,8 @@ cubeController.get('/details/:cubeId',async (req, res) => {
     const cubeId = req.params.cubeId;
 
     const cube = await cubeService.getCubeById(cubeId);
- 
+    console.log(cube);
+    
     res.render('cubes/details', { cube })
 });
 
