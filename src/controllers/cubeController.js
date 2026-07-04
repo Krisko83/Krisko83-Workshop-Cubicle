@@ -9,20 +9,19 @@ cubeController.get('/create/cube', (req, res) => {
     res.render('cubes/create');
 })
 
-cubeController.post('/create/cube',async (req, res) => {
+cubeController.post('/create/cube', async (req, res) => {
     const cubeData = req.body;
-    
+
     await cubeService.createCube(cubeData)
-    
+
     res.redirect('/')
 });
 
-cubeController.get('/details/:cubeId',async (req, res) => {
+cubeController.get('/details/:cubeId', async (req, res) => {
     const cubeId = req.params.cubeId;
 
     const cube = await cubeService.getCubeById(cubeId);
-    console.log(cube);
-    
+ 
     res.render('cubes/details', { cube })
 });
 
@@ -30,12 +29,31 @@ cubeController.get('/create/accessory', (req, res) => {
     res.render('accessories/create');
 })
 
-cubeController.post('/create/accessory',async (req, res) => {
+cubeController.post('/create/accessory', async (req, res) => {
     const accessoryData = req.body;
-  
+
     await accessoriesService.create(accessoryData)
-    
+
     res.redirect('/');
 })
+
+cubeController.get('/details/:cubeId/attach', async (req, res) => {
+    const cubeId = req.params.cubeId;
+
+    const accessories = await accessoriesService.getAll();
+    const cube = await cubeService.getCubeById(cubeId);
+
+    res.render('cubes/attach', { cube, accessories });
+});
+
+cubeController.post('/details/:cubeId', async (req, res) => {
+    const accessoryId = req.body.accessory;
+    const cubeId = req.params.cubeId;
+ 
+    await cubeService.attach(cubeId, accessoryId);
+
+    res.redirect(`/cubes/details/${cubeId}`);
+});
+
 
 export default cubeController;

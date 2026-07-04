@@ -4,8 +4,19 @@ function create(accessoryData) {
     return accessoriesRepository.create(accessoryData)
 }
 
+function getAll() {
+    return accessoriesRepository.getAll();
+};
+
+function getById(accessoryId) {
+    return accessoriesRepository.getById(accessoryId)
+}
+ 
+
 const accessoriesService = {
-    create
+    create,
+    getAll,
+    getById
 }
 
 export default accessoriesService;

@@ -8,8 +8,24 @@ async function create(accessoryData) {
     return accessory
 }
 
+async function getAll(){
+    const accessories = await prisma.accessory.findMany();
+
+    return accessories
+}
+
+async function getById(accessoryId) { 
+    const accessory = await prisma.accessory.findUnique({
+        where: { id: accessoryId}
+    });
+
+    return accessory
+}
+
 const accessoriesRepository = {
-    create
+    create,
+    getAll,
+    getById
 }
 
 export default accessoriesRepository;

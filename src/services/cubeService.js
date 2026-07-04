@@ -18,11 +18,15 @@ function getCubeById(cubeId){
     return cubeRepository.getById(cubeId);
 }
 
+function attach(cubeId, accessoryId) {
+    return cubeRepository.attach(cubeId, accessoryId);
+}
 
 
 const cubeService = {
     getAllCubes,
     createCube,
-    getCubeById
+    getCubeById,
+    attach
 }
 export default cubeService;

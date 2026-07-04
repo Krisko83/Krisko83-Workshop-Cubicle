@@ -38,10 +38,24 @@ async function getById(cubeId) {
     return cube;
 };
 
+async function attach(cubeId, accessoryId) {
+   const result = await prisma.cube.update({
+        where: { id: cubeId},
+        data: {
+            accessories: {
+                connect: { id: accessoryId }
+            }
+        }
+    })
+
+    return result;
+}
+
 const cubeRepository = {
     getAll,
     createCube,
-    getById
+    getById,
+    attach
 };
 
 export default cubeRepository;
