@@ -3,6 +3,7 @@ import cubeService from "../services/cubeService.js";
 import { log } from "console";
 import accessoriesService from "../services/accessoriesService.js";
 import { isAuth } from "../middlewares/authMiddleware.js";
+import { createCategoryOptions } from "../utils/categoryUtils.js";
 
 const cubeController = Router();
 
@@ -21,7 +22,7 @@ cubeController.post('/create/cube', isAuth, async (req, res) => {
 
 cubeController.get('/details/:cubeId', async (req, res) => {
     const cubeId = req.params.cubeId;
-    const userId = req.user.id;
+    const userId = req.user?.id;
 
     const cube = await cubeService.getCubeById(cubeId);
     const isOwner = cube.creatorId === userId;
@@ -63,9 +64,10 @@ cubeController.get('/details/:cubeId/edit', isAuth, async (req, res) => {
     const cubeId = req.params.cubeId;
 
     const cube = await cubeService.getCubeById(cubeId);
-    console.log(cube);
 
-    res.render('cubes/edit', { cube });
+    const difficultyOptions = createCategoryOptions(cube)
+ 
+    res.render('cubes/edit', { cube, difficultyOptions });
 });
 
 cubeController.post('/details/:cubeId/edit', isAuth, async (req, res) => {
