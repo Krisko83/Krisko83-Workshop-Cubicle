@@ -38,12 +38,18 @@ console.log(cube);
    return await cubeRepository.deleteCube(cubeId, userId);    
 }
 
+function edit(cubeData, cubeId, userId){
+    cubeData.difficultyLevel = Number(cubeData.difficultyLevel);
+    
+    return cubeRepository.edit(cubeData, cubeId, userId)
+}
 
 const cubeService = {
     getAllCubes,
     createCube,
     getCubeById,
     attach,
-    deleteCube
+    deleteCube,
+    edit
 }
 export default cubeService;

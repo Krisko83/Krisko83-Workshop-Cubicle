@@ -25,7 +25,7 @@ cubeController.get('/details/:cubeId', async (req, res) => {
 
     const cube = await cubeService.getCubeById(cubeId);
     const isOwner = cube.creatorId === userId;
-    
+
     res.render('cubes/details', { cube, isOwner, pageTitle: 'Details' })
 });
 
@@ -59,16 +59,29 @@ cubeController.post('/details/:cubeId', async (req, res) => {
     res.redirect(`/cubes/details/${cubeId}`);
 });
 
-cubeController.get('/details/edit/:cubeId', isAuth, (req, res) => {
+cubeController.get('/details/:cubeId/edit', isAuth, async (req, res) => {
     const cubeId = req.params.cubeId;
 
+    const cube = await cubeService.getCubeById(cubeId);
+    console.log(cube);
 
+    res.render('cubes/edit', { cube });
+});
+
+cubeController.post('/details/:cubeId/edit', isAuth, async (req, res) => {
+    const cubeId = req.params.cubeId;
+    const userId = req.user.id;
+    const cubeData = req.body;
+
+    await cubeService.edit(cubeData, cubeId, userId)
+
+    res.redirect(`/cubes/details/${cubeId}`);
 })
+
 
 cubeController.get('/details/:cubeId/delete', isAuth, async (req, res) => {
     const cubeId = req.params.cubeId;
-    const userId = req.user.id;
-    console.log(cubeId, userId);
+    const userId = req.user.id; 
 
     await cubeService.deleteCube(cubeId, userId);
 

@@ -62,12 +62,23 @@ async function deleteCube(cubeId, userId) {
     return result;
 }
 
+async function edit(cubeData, cubeId, userId) {
+    const result = await prisma.cube.update({
+        where: {
+            id: cubeId,
+            creatorId: userId
+        },
+        data: cubeData
+    })
+}
+
 const cubeRepository = {
     getAll,
     createCube,
     getById,
     attach,
-    deleteCube
+    deleteCube,
+    edit
 };
 
 export default cubeRepository;
