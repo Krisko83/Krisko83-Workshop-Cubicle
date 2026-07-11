@@ -5,9 +5,13 @@
   <p><span>Difficulty level:</span> {{cube.difficultyLevel}}</p>
   <a class="btn" href="/">Back</a>
 </div>
+{{#if isOwner}}
 <div class="details">
   <a href="/cubes/details/{{cube.id}}/attach" class="btn">ATTACH</a>
+  <a href="/cubes/details/{{cube.id}}/edit" class="btn">EDIT</a>
+  <a href="/cubes/details/{{cube.id}}/delete" class="btn">DELETE</a>
 </div>
+{{/if}}
 <h2>Accessories</h2>
 <div class="accessories">
   {{#each cube.accessories}}

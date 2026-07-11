@@ -7,30 +7,33 @@ import { isAuth } from "../middlewares/authMiddleware.js";
 const cubeController = Router();
 
 cubeController.get('/create/cube', isAuth, (req, res) => {
-    res.render('cubes/create', {pageTitle: 'Create Cube'});
+    res.render('cubes/create', { pageTitle: 'Create Cube' });
 })
 
 cubeController.post('/create/cube', isAuth, async (req, res) => {
     const cubeData = req.body;
+    const userId = req.user.id;
 
-    await cubeService.createCube(cubeData)
+    await cubeService.createCube(cubeData, userId)
 
     res.redirect('/')
 });
 
 cubeController.get('/details/:cubeId', async (req, res) => {
     const cubeId = req.params.cubeId;
+    const userId = req.user.id;
 
     const cube = await cubeService.getCubeById(cubeId);
- 
-    res.render('cubes/details', { cube, pageTitle: 'Details' })
+    const isOwner = cube.creatorId === userId;
+    
+    res.render('cubes/details', { cube, isOwner, pageTitle: 'Details' })
 });
 
 cubeController.get('/create/accessory', isAuth, (req, res) => {
-    res.render('accessories/create', {pageTitle: 'Create Accessory'});
+    res.render('accessories/create', { pageTitle: 'Create Accessory' });
 })
 
-cubeController.post('/create/accessory',isAuth , async (req, res) => {
+cubeController.post('/create/accessory', isAuth, async (req, res) => {
     const accessoryData = req.body;
 
     await accessoriesService.create(accessoryData)
@@ -38,22 +41,38 @@ cubeController.post('/create/accessory',isAuth , async (req, res) => {
     res.redirect('/');
 })
 
-cubeController.get('/details/:cubeId/attach',isAuth , async (req, res) => {
+cubeController.get('/details/:cubeId/attach', isAuth, async (req, res) => {
     const cubeId = req.params.cubeId;
     const cube = await cubeService.getCubeById(cubeId);
- 
-    const accessories = await accessoriesService.getAll({ exclude: cube.accessories.map(accessory => accessory.id)});    
 
-    res.render('cubes/attach', { cube, accessories, pageTitle: 'Attach Accessory'  });
+    const accessories = await accessoriesService.getAll({ exclude: cube.accessories.map(accessory => accessory.id) });
+
+    res.render('cubes/attach', { cube, accessories, pageTitle: 'Attach Accessory' });
 });
 
 cubeController.post('/details/:cubeId', async (req, res) => {
     const accessoryId = req.body.accessory;
     const cubeId = req.params.cubeId;
- 
+
     await cubeService.attach(cubeId, accessoryId);
 
     res.redirect(`/cubes/details/${cubeId}`);
+});
+
+cubeController.get('/details/edit/:cubeId', isAuth, (req, res) => {
+    const cubeId = req.params.cubeId;
+
+
+})
+
+cubeController.get('/details/:cubeId/delete', isAuth, async (req, res) => {
+    const cubeId = req.params.cubeId;
+    const userId = req.user.id;
+    console.log(cubeId, userId);
+
+    await cubeService.deleteCube(cubeId, userId);
+
+    res.redirect('/');
 });
 
 

@@ -8,8 +8,9 @@ function getAllCubes(filter={}) {
 };
  
 
-function createCube(cubeData) {
+function createCube(cubeData, userId) {
     cubeData.difficultyLevel = Number(cubeData.difficultyLevel);
+    cubeData.creatorId = userId;
 
     return cubeRepository.createCube(cubeData);
 };
@@ -22,11 +23,27 @@ function attach(cubeId, accessoryId) {
     return cubeRepository.attach(cubeId, accessoryId);
 }
 
+async function deleteCube(cubeId, userId) {
+    const cube = await cubeRepository.getById(cubeId);
+console.log(cube);
+
+    if(!cube) {
+        throw new Error('Cube is not found!')
+            }
+    
+    if(cube.creatorId !== userId) {
+        throw new Error('Unauthorized')
+    }        
+
+   return await cubeRepository.deleteCube(cubeId, userId);    
+}
+
 
 const cubeService = {
     getAllCubes,
     createCube,
     getCubeById,
-    attach
+    attach,
+    deleteCube
 }
 export default cubeService;

@@ -51,11 +51,23 @@ async function attach(cubeId, accessoryId) {
     return result;
 }
 
+async function deleteCube(cubeId, userId) {
+    const result = await prisma.cube.delete({
+        where :{
+            id: cubeId,
+            creatorId: userId
+        }
+    })
+
+    return result;
+}
+
 const cubeRepository = {
     getAll,
     createCube,
     getById,
-    attach
+    attach,
+    deleteCube
 };
 
 export default cubeRepository;

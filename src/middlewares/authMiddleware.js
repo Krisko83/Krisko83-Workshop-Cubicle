@@ -22,6 +22,7 @@ export function authMiddleware(req, res, next) {
 };
 
 export function isAuth(req, res, next) {
+    
     const token = req.cookies['auth'];  
     if(!token) {
        return res.redirect('/auth/login')
