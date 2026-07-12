@@ -66,7 +66,7 @@ cubeController.get('/details/:cubeId/edit', isAuth, async (req, res) => {
     const cube = await cubeService.getCubeById(cubeId);
 
     const difficultyOptions = createCategoryOptions(cube)
- 
+
     res.render('cubes/edit', { cube, difficultyOptions });
 });
 
@@ -83,12 +83,21 @@ cubeController.post('/details/:cubeId/edit', isAuth, async (req, res) => {
 
 cubeController.get('/details/:cubeId/delete', isAuth, async (req, res) => {
     const cubeId = req.params.cubeId;
-    const userId = req.user.id; 
+
+    const cube = await cubeService.getCubeById(cubeId);
+    const difficultyLevelOptions = createCategoryOptions(cube);
+
+    res.render('cubes/delete', { cube, difficultyLevelOptions });
+});
+
+cubeController.post('/details/:cubeId/delete', isAuth, async (req, res) => {
+    const cubeId = req.params.cubeId;
+    const userId = req.user.id;
 
     await cubeService.deleteCube(cubeId, userId);
-
     res.redirect('/');
 });
+
 
 
 export default cubeController;
