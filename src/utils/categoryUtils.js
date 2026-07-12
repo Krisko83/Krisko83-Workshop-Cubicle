@@ -10,10 +10,10 @@ export function createCategoryOptions(cube) {
             selected: cube.difficultyLevel === value
         }
         return option
-    })
-    
+    });
+
     return difficultyOptions;
-}
+};
 
 
 

@@ -3,9 +3,9 @@ import cubeService from '../services/cubeService.js';
 
 const homeController = Router();
 
-homeController.get('/',async (req, res) => {
+homeController.get('/', async (req, res) => {
     const filter = req.query;   
-    
+ 
     const cubesData = await cubeService.getAllCubes(filter); 
     
     res.render('index', { cubesData, filter, pageTitle: 'Home' })

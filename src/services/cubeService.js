@@ -19,14 +19,13 @@ function getCubeById(cubeId){
     return cubeRepository.getById(cubeId);
 }
 
-function attach(cubeId, accessoryId) {
-    return cubeRepository.attach(cubeId, accessoryId);
+function attach(cubeId, accessoryId, userId) {
+    return cubeRepository.attach(cubeId, accessoryId, userId);
 }
 
 async function deleteCube(cubeId, userId) {
     const cube = await cubeRepository.getById(cubeId);
-console.log(cube);
-
+ 
     if(!cube) {
         throw new Error('Cube is not found!')
             }

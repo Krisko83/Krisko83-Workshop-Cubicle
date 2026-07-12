@@ -13,8 +13,6 @@ async function register(userData) {
 
 
 async function getUserByUsername(userData) {
-    console.log(userData.username);
-
     const user = await prisma.user.findUnique({
         where: {
             username: userData.username
@@ -22,13 +20,11 @@ async function getUserByUsername(userData) {
     })
 
     return user;
-}
-
-
+};
 
 const userRepository = {
     register,
     getUserByUsername
-}
+};
 
 export default userRepository;

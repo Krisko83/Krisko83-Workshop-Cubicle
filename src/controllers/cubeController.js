@@ -51,11 +51,12 @@ cubeController.get('/details/:cubeId/attach', isAuth, async (req, res) => {
     res.render('cubes/attach', { cube, accessories, pageTitle: 'Attach Accessory' });
 });
 
-cubeController.post('/details/:cubeId', async (req, res) => {
+cubeController.post('/details/:cubeId/attach', isAuth, async (req, res) => {
     const accessoryId = req.body.accessory;
-    const cubeId = req.params.cubeId;
+    const cubeId = req.params.cubeId; 
+    const userId = req.user.id;
 
-    await cubeService.attach(cubeId, accessoryId);
+    await cubeService.attach(cubeId, accessoryId, userId);
 
     res.redirect(`/cubes/details/${cubeId}`);
 });
@@ -67,7 +68,7 @@ cubeController.get('/details/:cubeId/edit', isAuth, async (req, res) => {
 
     const difficultyOptions = createCategoryOptions(cube)
 
-    res.render('cubes/edit', { cube, difficultyOptions });
+    res.render('cubes/edit', { cube, difficultyOptions, pageTitle: 'Edit Cube' });
 });
 
 cubeController.post('/details/:cubeId/edit', isAuth, async (req, res) => {
@@ -87,7 +88,7 @@ cubeController.get('/details/:cubeId/delete', isAuth, async (req, res) => {
     const cube = await cubeService.getCubeById(cubeId);
     const difficultyLevelOptions = createCategoryOptions(cube);
 
-    res.render('cubes/delete', { cube, difficultyLevelOptions });
+    res.render('cubes/delete', { cube, difficultyLevelOptions, pageTitle: 'Delete Cube' });
 });
 
 cubeController.post('/details/:cubeId/delete', isAuth, async (req, res) => {
@@ -97,7 +98,5 @@ cubeController.post('/details/:cubeId/delete', isAuth, async (req, res) => {
     await cubeService.deleteCube(cubeId, userId);
     res.redirect('/');
 });
-
-
 
 export default cubeController;

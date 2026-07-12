@@ -38,9 +38,12 @@ async function getById(cubeId) {
     return cube;
 };
 
-async function attach(cubeId, accessoryId) {
+async function attach(cubeId, accessoryId, userId) {
    const result = await prisma.cube.update({
-        where: { id: cubeId},
+        where: { 
+            id: cubeId,
+            creatorId: userId
+        },
         data: {
             accessories: {
                 connect: { id: accessoryId }
