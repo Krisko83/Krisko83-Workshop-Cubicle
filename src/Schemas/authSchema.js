@@ -11,4 +11,13 @@ export const CreateUserSchema = z.object({
 }).refine((data) => data.password === data.repeatPassword, {
     error: 'Passwords do not match!',
     path: ['repeatPassword']
-}).transform(({ repeatPassword, ...data }) => data)
+}).transform(({ repeatPassword, ...data }) => data);
+
+export const UserLoginSchema = z.object({
+    username: z.string()
+        .min(5, { error: 'Username must be at least 5 characters long!' })
+        .regex(/^[A-Za-z0-9]+$/),
+    password: z.string()
+        .min(8, { error: 'Password must be at least 8 charactes long!' })
+        .regex(/^[A-Za-z0-9]+$/)
+})

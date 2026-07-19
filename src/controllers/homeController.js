@@ -8,12 +8,12 @@ homeController.get('/', async (req, res) => {
  
     const cubesData = await cubeService.getAllCubes(filter); 
     
-    res.render('index', { cubesData, filter, pageTitle: 'Home' })
+    res.render('index', { cubesData, filter })
 })
 
 homeController.get('/about', (req, res) => {
  
-    res.render('about', { pageTitle: 'About' })
+    res.render('about')
 })
 
  

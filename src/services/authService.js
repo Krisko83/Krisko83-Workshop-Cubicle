@@ -19,7 +19,7 @@ async function login(userData) {
     const user = await userRepository.getUserByUsername(userData);
 
     if (!user) {
-        throw new Error('Invalid Username!')
+        throw new Error('Username does not exist!')
     }
 
     const isPassowrdValid = await bcrypt.compare(userData.password, user.password);
@@ -32,15 +32,10 @@ async function login(userData) {
 
     return token;
 }
-
-function logout(userData) {
-
-}
-
+ 
 const authService = {
     register,
-    login,
-    logout
+    login
 }
 
 export default authService;

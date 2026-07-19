@@ -5,12 +5,9 @@ export function getErrorMessage(err) {
     let error = {}
 
     if(err instanceof z.ZodError){
-         const errors = z.flattenError(err).fieldErrors;
-         console.log('from errors before',errors);
-         
+         const errors = z.flattenError(err).fieldErrors;      
          error = Object.values(errors).flat().at(0)
-         console.log('from errors after', error);
-
+  
     } else if(err instanceof PrismaClientKnownRequestError){
         if(err.code === 'P2002') {
             error = 'Username already exist!'
