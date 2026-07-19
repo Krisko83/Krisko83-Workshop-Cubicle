@@ -19,13 +19,13 @@ async function login(userData) {
     const user = await userRepository.getUserByUsername(userData);
 
     if (!user) {
-        throw new Error('Invalid user or password!')
+        throw new Error('Invalid Username!')
     }
 
     const isPassowrdValid = await bcrypt.compare(userData.password, user.password);
 
     if (!isPassowrdValid) {
-        throw new Error('Invalid user or password!')
+        throw new Error('Wrong Password!')
     }
 
     const token = createAuthToken(user);

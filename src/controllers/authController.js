@@ -15,17 +15,17 @@ authController.post('/register', isGuest, async (req, res) => {
 
     try {
         const user = CreateUserSchema.parse(userData)
- 
+
         const token = await authService.register(user);
- 
+
         res.cookie('auth', token, { httpOnly: true });
         res.redirect('/')
     } catch (err) {
         const error = getErrorMessage(err);
-        console.log('from controller',error);
-        
-        res.render('auth/register', {...userData, error})
-        
+        console.log('from controller', error);
+
+        res.render('auth/register', { ...userData, error })
+
     }
 
 })
@@ -37,10 +37,17 @@ authController.get('/login', isGuest, async (req, res) => {
 authController.post('/login', isGuest, async (req, res) => {
     const userData = req.body;
 
-    const token = await authService.login(userData);
+    try {
+        const token = await authService.login(userData);
 
-    res.cookie('auth', token, { httpOnly: true })
-    res.redirect('/');
+        res.cookie('auth', token, { httpOnly: true })
+        res.redirect('/');
+    } catch (err) {
+        const error = getErrorMessage(err);
+
+        res.render('auth/login', { ...userData, error })
+    }
+
 });
 
 authController.get('/logout', isAuth, (req, res) => {

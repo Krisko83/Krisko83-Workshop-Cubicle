@@ -20,7 +20,7 @@ export function getErrorMessage(err) {
             error = 'Database Error!'
         }
     } else {
-        error = error.message;
+        error = err.message;
     }
 
     return error
